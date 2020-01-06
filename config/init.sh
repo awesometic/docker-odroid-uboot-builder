@@ -6,8 +6,6 @@ msg() {
     echo -e "${TEXT_RESET}"
 }
 
-[ -d "/output" ] && OUTPUT_DIR=true || OUTPUT_DIR=false
-
 export MAKE_JOBS="$(( $(nproc) * 6 / 5 ))"
 export SDFUSE="/uboot/sd_fuse/sd_fusing.sh"
 [ -z $USER_UID ] && USER_UID=1000
@@ -19,7 +17,6 @@ echo -e "Variables:
 \\t- USER_GID=$USER_GID
 \\t- SBC=$SBC
 \\t- MAKE_ARGS=${MAKE_ARGS,,}
-\\t- OUTPUT_DIR=$OUTPUT_DIR
 \\t- AUTO_INSTALL=${AUTO_INSTALL,,}
 \\t- BLOCK_DEVICE=${BLOCK_DEVICE,,}"
 
@@ -79,11 +76,9 @@ if [ "$AUTO_INSTALL" = "true" ] && [ "$BLOCK_DEVICE" = *"/dev/sd"* ]; then
     "$SDFUSE" "$BLOCK_DEVICE"
 fi
 
-if [ "$OUTPUT_DIR" = "true" ]; then
-    msg "Copy the result files to the output directory..."
-    [ -f "/uboot/u-boot.bin" ] && cp -arfv /uboot/u-boot.bin /output
-    cp -arfv /uboot/sd_fuse/* /output
-fi
+msg "Copy the result files to the output directory. Check if you have given a output directory..."
+[ -f "/uboot/u-boot.bin" ] && cp -arfv /uboot/u-boot.bin /output
+cp -arfv /uboot/sd_fuse/* /output
 
 chown -R "$USER_UID":"$USER_GID" /uboot
 [ "$OUTPUT_DIR" = "true" ] && chown -R "$USER_UID":"$USER_GID" /output

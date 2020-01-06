@@ -106,8 +106,6 @@ You can put your parameters for the make command as a value of **MAKE_ARGS** env
 
 If you want to **install the U-Boot image to your boot media automatically**, make sure that your boot media mounted in advance to pass its partitions to container as the volumes. Then give the environment variable **AUTO_INSTALL=true**. In most of the Linux DISTROs, after inserting the boot media then that will be mounted to under **/media/$USER** directory.
 
-If **OUTPUT_DIR** is set, compiled files copied to **/output** directory.
-
 ### No Daemon mode
 
 Do not run this image as a daemon. Promptly to be terminated because it doesn't have any jobs to do.

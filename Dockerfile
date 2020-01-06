@@ -27,7 +27,6 @@ RUN apt-get clean
 
 # Create directories to use
 RUN mkdir /{toolchains,output}
-RUN mkdir -p /media/boot
 
 # Add shell scripts
 ADD config/init.sh /
