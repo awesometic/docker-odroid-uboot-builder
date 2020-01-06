@@ -65,10 +65,11 @@ elif [ "$MAKE_ARGS" = "menuconfig" ]; then
     msg "Do make menuconfig..."
     make -j "$MAKE_JOBS" "menuconfig"
 elif [ -z "$MAKE_ARGS" ]; then
-    msg "Do make -j "$MAKE_JOBS"..."
+    msg "Do make..."
     make -j "$MAKE_JOBS"
 else
-    msg "Do make -j "$MAKE_JOBS" $MAKE_ARGS..."
+    msg "Do make $MAKE_ARGS..."
+    make -j "$MAKE_JOBS" "$MAKE_ARGS"
 fi
 
 if [ "$AUTO_INSTALL" = "true" ] && [ "$BLOCK_DEVICE" = *"/dev/sd"* ]; then
@@ -80,8 +81,9 @@ msg "Copy the result files to the output directory. Check if you have given a ou
 [ -f "/uboot/u-boot.bin" ] && cp -arfv /uboot/u-boot.bin /output
 cp -arfv /uboot/sd_fuse/* /output
 
+msg "Change ownership..."
 chown -R "$USER_UID":"$USER_GID" /uboot
-[ "$OUTPUT_DIR" = "true" ] && chown -R "$USER_UID":"$USER_GID" /output
+chown -R "$USER_UID":"$USER_GID" /output
 
 sync
 msg "All processes are done!"

@@ -16,7 +16,7 @@ So that the performance is tooooo slower than the native Linux machine does. In 
 
 For further information, please refer to [References](#References) section of this documents.
 
-### WSL (Windows Subsystem for Linux)
+### WSL 2 (Windows Subsystem for Linux)
 
 However, if you use Windows 20h1 or higher, you can build as fast as on the Linux system. In my experience, that difference is only a few minutes, probably it can be seconds for the powerful system.
 
@@ -35,6 +35,7 @@ docker run -it --rm \
 -e SBC={ The name of your SBC without the prefix word Odroid } \
 -e BLOCK_DEVICE={ A device file name of the boot media that is to be passed } \
 -e MAKE_ARGS={ make arguments you about to use } \
+-e AUTO_INSTALL={ Install automatically to the boot media after complete building U-Boot } \
 --device /dev/{ A block device to pass to the container } \
 awesometic/odroid-uboot-builder
 ```
@@ -76,6 +77,7 @@ docker run -it --rm \
 -e SBC=n2 \
 -e BLOCK_DEVICE=sda \
 -e MAKE_ARGS=cleanbuild \
+-e AUTO_INSTALL=true \
 --device /dev/sda \
 awesometic/odroid-uboot-builder
 ```
