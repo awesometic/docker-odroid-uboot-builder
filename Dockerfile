@@ -11,6 +11,8 @@ ENV SBC="" \
 # It is separated by each command to prevent from barely caused download fail when automated building from Docker hub
 RUN dpkg --add-architecture i386
 RUN apt-get update && apt-get -y -q upgrade
+RUN apt-get -y -q install sudo
+RUN apt-get -y -q install eject
 RUN apt-get -y -q install vim
 RUN apt-get -y -q install wget
 RUN apt-get -y -q install git

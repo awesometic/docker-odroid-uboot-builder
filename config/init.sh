@@ -7,7 +7,8 @@ msg() {
 }
 
 export MAKE_JOBS="$(( $(nproc) * 6 / 5 ))"
-export SDFUSE="/uboot/sd_fuse/sd_fusing.sh"
+export SDFUSE_DIR="/uboot/sd_fuse/"
+export SDFUSE_SH="sd_fusing.sh"
 [ -z $USER_UID ] && USER_UID=1000
 [ -z $USER_GID ] && USER_GID=1000
 
@@ -72,9 +73,10 @@ else
     make -j "$MAKE_JOBS" "$MAKE_ARGS"
 fi
 
-if [ "$AUTO_INSTALL" = "true" ] && [ "$BLOCK_DEVICE" = *"/dev/sd"* ]; then
+if [ "$AUTO_INSTALL" = "true" ] && [ -n "$BLOCK_DEVICE" ]; then
     msg "Install U-Boot to the selected block device "$BLOCK_DEVICE" automatically..."
-    "$SDFUSE" "$BLOCK_DEVICE"
+    cd "$SDFUSE_DIR"
+    ./"$SDFUSE_SH" "$BLOCK_DEVICE"
 fi
 
 msg "Copy the result files to the output directory. Check if you have given a output directory..."

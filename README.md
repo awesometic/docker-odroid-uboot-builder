@@ -33,7 +33,7 @@ docker run -it --rm \
 -e USER_UID={ UID to correct ownership, set 1000 by default } \
 -e USER_GID={ GID to correct ownership, set 1000 by default } \
 -e SBC={ The name of your SBC without the prefix word Odroid } \
--e BLOCK_DEVICE={ A device file name of the boot media that is to be passed } \
+-e BLOCK_DEVICE={ A device file path of the boot media that is to be passed } \
 -e MAKE_ARGS={ make arguments you about to use } \
 -e AUTO_INSTALL={ Install automatically to the boot media after complete building U-Boot } \
 --device /dev/{ A block device to pass to the container } \
@@ -75,7 +75,7 @@ docker run -it --rm \
 -e USER_UID=$UID \
 -e USER_GID=$GID \
 -e SBC=n2 \
--e BLOCK_DEVICE=sda \
+-e BLOCK_DEVICE=/dev/sda \
 -e MAKE_ARGS=cleanbuild \
 -e AUTO_INSTALL=true \
 --device /dev/sda \
