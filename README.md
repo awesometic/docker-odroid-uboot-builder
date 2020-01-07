@@ -1,5 +1,12 @@
 # docker-odroid-uboot-builder
 
+![](https://img.shields.io/docker/automated/awesometic/odroid-uboot-builder)
+![](https://img.shields.io/docker/build/awesometic/odroid-uboot-builder)
+![](https://img.shields.io/microbadger/image-size/awesometic/odroid-uboot-builder)
+![](https://img.shields.io/microbadger/layers/awesometic/odroid-uboot-builder)
+![](https://img.shields.io/docker/pulls/awesometic/odroid-uboot-builder)
+![](https://img.shields.io/docker/stars/awesometic/odroid-uboot-builder)
+
 ## What is this
 
 This image is written for easy compile on development of **Odroid Linux U-Boot**.
