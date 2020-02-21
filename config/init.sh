@@ -81,7 +81,7 @@ fi
 
 msg "Copy the result files to the output directory. Check if you have given a output directory..."
 [ -f "/uboot/u-boot.bin" ] && cp -arfv /uboot/u-boot.bin /output
-cp -arfv /uboot/sd_fuse/* /output
+cp -arfv /uboot/sd_fuse /output
 
 msg "Change ownership..."
 chown -R "$USER_UID":"$USER_GID" /uboot
